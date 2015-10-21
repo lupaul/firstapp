@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  
+  namespace :account do
+    resources :groups
+    resources :posts
+  end
+  
+  devise_for :users
+  root 'groups#index'
+  resources :groups do
+    member do
+      post :join
+      post :quit
+    end
+    resources :posts
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
